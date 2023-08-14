@@ -1,0 +1,41 @@
+import numpy as np
+import pandas as pd
+from pandas_datareader import data
+import yfinance as yf
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import requests
+
+
+
+
+# compare reven, s@500, interest, stock price
+
+
+print("-------Welcome to Oliver's Stock Analysis Program!-------")
+
+ticker_symbol1 = input("What's the stock ticker?: ")
+data = yf.download(ticker_symbol1)  
+# additional_data = yf.ticker(ticker_symbol1) for some reason this isn't callable
+
+
+# History Block 1
+gather_History2 = input ('''Input h for historical data
+                         ''')
+history = str("h")
+if gather_History2 == history:
+    print("Here's five years of data!")
+    print(data.info)
+
+
+# Get the closing data
+# History Block 2
+price = np.array(data['Close'])
+
+# Plot the data
+plt.plot(price)
+plt.ylabel('Price', fontsize=15)
+plt.xlabel('Date', fontsize=15)
+plt.title(ticker_symbol1, fontsize= 15)
+    # Show the plot
+plt.show()
