@@ -9,17 +9,15 @@ import requests
 
 
 
-# compare reven, s@500, interest, stock price
-
-
+# Intro
 print("-------Welcome to Oliver's Stock Analysis Program!-------")
+
 
 ticker_symbol1 = input("What's the stock ticker?: ")
 data = yf.download(ticker_symbol1)  
-# additional_data = yf.ticker(ticker_symbol1) for some reason this isn't callable
+#download yf ticker input
 
-
-# History Block 1
+# Gather Stock History
 gather_History2 = input ('''Input h for historical data
                          ''')
 history = str("h")
@@ -29,7 +27,7 @@ if gather_History2 == history:
 
 
 # Get the closing data
-# History Block 2
+# Get price
 price = np.array(data['Close'])
 
 # Plot the data
