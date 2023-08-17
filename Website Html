@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your website description here">
+    <title>Deepsight Analytics</title>
+    <!-- Add your CSS link(s) and other head content here -->
+    <link rel="stylesheet" href="StockCSS.css">
+</head>
+<body>
+    <!-- Your content goes here -->
+    
+    <!-- Example: -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <h1>Welcome to Deepsight!</h1>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2 class="aboutTitle">About Us</h2>
+            <p class="about">Deepsight is a financial analytics platform designed to give you a deeper insight into a stock, without all of the hassle that traditional financial analysis brings.</p>
+        </section>
+    </main>
+
+    <div class="placeholder">
+
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Wickway Financial. All rights reserved.</p>
+    </footer>
+    
+   
+</body>
+</html>
