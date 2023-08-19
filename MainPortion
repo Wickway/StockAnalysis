@@ -1,38 +1,31 @@
 import numpy as np
 import pandas as pd
-from pandas_datareader import data
 import yfinance as yf
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import requests
-
-
-
 
 # Intro
 print("-------Welcome to Oliver's Stock Analysis Program!-------")
 
-
+# Get stock ticker input from the user
 ticker_symbol1 = input("What's the stock ticker?: ")
-ticker_data = yf.download(ticker_symbol1)  
-#download yf ticker input
+ticker_data = yf.download(ticker_symbol1)
 
 # Gather Stock History
-gather_History2 = input ('''Input h for historical data
-                         ''')
-history = str("h")
+gather_History2 = input("Input 'h' for historical data: ")
+history = "h"
 if gather_History2 == history:
     print("Here's five years of data!")
-    print(ticker_data.info)
-
-
+    print(ticker_data.info())
 
 # Open Interest Rate History into Data Frame
-read_interest_data = pd.read_csv('FRB_H15.csv', header = None, skiprows=6)
+read_interest_data = pd.read_csv('FRB_H15.csv', header=None, skiprows=6)
 
 # Name FRB_H15 Columns
 interest_rate_columns = ['Date', 'Federal Funds', 'Prime Rate', 'Primary Credit Rate']
 read_interest_data.columns = interest_rate_columns
+
+# Convert 'Date' column to datetime type
+read_interest_data['Date'] = pd.to_datetime(read_interest_data['Date'])
 
 # Print Interest Rate Data in terminal
 print("Here's the interest rates!")
@@ -41,25 +34,22 @@ print(read_interest_data)
 # Gather Federal Funds interest rates
 interest_rates = read_interest_data['Federal Funds']
 
-plt.plot(interest_rates)
+# Create a single figure with two subplots
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
-# psuedo code: read column 1, skip first 6 rows, plot column prices with close prices, Ensure they match in scale, add a legend and plot color
-#interest_data = np.array(read_interest_data[])
+# Plot Stock Price Data in the first subplot
+ax1.plot(ticker_data.index, ticker_data['Close'], label='Stock Price')
+ax1.set_ylabel('Price')
+ax1.set_title(f"Stock Price for {ticker_symbol1}")
+ax1.legend()
 
-# Get the closing data
-# Get price
-price = np.array(ticker_data['Close'])
+# Plot Interest Rates in the second subplot
+ax2.plot(read_interest_data['Date'], interest_rates, label='Interest Rates', color='orange')
+ax2.set_xlabel('Date')
+ax2.set_ylabel('Interest Rate')
+ax2.set_title('Federal Funds Interest Rates')
+ax2.legend()
 
-# Plot the data
-plt.plot(price)
-# Plot Interest Rates
-plt.plot(interest_rates)
-
-
-plt.grid(True)
-plt.ylabel('y', fontsize=15)
-plt.xlabel('x', fontsize=15) 
-
-plt.title(ticker_symbol1, fontsize= 15)
-    # Show the plot
+plt.xticks(rotation=45)
+plt.tight_layout()
 plt.show()
