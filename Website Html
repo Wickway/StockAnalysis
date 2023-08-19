@@ -28,21 +28,22 @@
             <p class="about">Deepsight is a financial analytics platform designed to give you a deeper insight into a stock, without all of the hassle that traditional financial analysis brings.</p>
         </section>
     </main>
-
+    <h1 class="welcome">Welcome to Oliver's Stock Analysis Program!</h1>
+    <div class="formInput">
+        <label for="ticker_symbol">What's the stock ticker?: </label>
+        <form>
+            <input type="text" id="ticker_symbol" name="ticker_symbol">
+            <br>
+            <label for="gather_history">Input 'h' for historical data: </label>
+            <input type="text" id="gather_history" name="gather_history">
+            <br>
+            <button type="button" onclick="analyzeStock()">Analyze Stock</button>
+        </form>
+</div>
     <div class="placeholder">
-        <h1>Welcome to Oliver's Stock Analysis Program!</h1>
         
-        <div>
-            <label for="ticker_symbol">What's the stock ticker?: </label>
-            <form>
-                <input type="text" id="ticker_symbol" name="ticker_symbol">
-                <br>
-                <label for="gather_history">Input 'h' for historical data: </label>
-                <input type="text" id="gather_history" name="gather_history">
-                <br>
-                <button type="button" onclick="analyzeStock()">Analyze Stock</button>
-            </form>
-    </div>
+        
+        
     </div>
     <footer>
         <p>&copy; 2023 Wickway Financial. All rights reserved.</p>
