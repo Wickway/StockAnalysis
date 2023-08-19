@@ -78,4 +78,17 @@ footer {
     justify-content: center;
     align-items: center;
     margin: 20px auto;
+    border-radius: 10px;
+}
+
+.formInput {
+    background-color: lightblue;
+    width: 400px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    color: black;
+    border-radius: 10px;
 }
