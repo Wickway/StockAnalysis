@@ -92,3 +92,11 @@ footer {
     color: black;
     border-radius: 10px;
 }
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    color: black;
+}
