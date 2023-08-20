@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt
 
@@ -8,47 +6,36 @@ print("-------Welcome to Oliver's Stock Analysis Program!-------")
 
 # Get stock ticker input from the user
 ticker_symbol1 = input("What's the stock ticker?: ")
-ticker_data = yf.download(ticker_symbol1)
+ticker_data = yf.download(ticker_symbol1, period="5y")  # Download stock data for a 5-year period
+
+# Download TNX data
+ticker_interest = yf.download("^TNX", period="5y")
 
 # Gather Stock History
-gather_History2 = input("Input 'h' for historical data: ")
-history = "h"
-if gather_History2 == history:
+if input("Input 'h' for historical data: ").lower() == 'h':
     print("Here's five years of data!")
     print(ticker_data.info())
 
-# Open Interest Rate History into Data Frame
-read_interest_data = pd.read_csv('FRB_H15.csv', header=None, skiprows=6)
+# Create a single figure with a single axis
+fig, ax = plt.subplots(figsize=(10, 6))
 
-# Name FRB_H15 Columns
-interest_rate_columns = ['Date', 'Federal Funds', 'Prime Rate', 'Primary Credit Rate']
-read_interest_data.columns = interest_rate_columns
+# Plot Stock Price Data
+ax.plot(ticker_data.index, ticker_data['Close'], label='Stock Price', color='blue')
+ax.set_ylabel('Price', color='blue')
+ax.set_title(f"Stock Price and Federal Funds Interest Rates for {ticker_symbol1}")
+ax.tick_params(axis='y', labelcolor='blue')
 
-# Convert 'Date' column to datetime type
-read_interest_data['Date'] = pd.to_datetime(read_interest_data['Date'])
+# Add Interest Rate Data as a second y-axis on the right side
+ax2 = ax.twinx()
+ax2.plot(ticker_interest.index, ticker_interest['Close'], label='Interest Rate', color='orange')
+ax2.set_ylabel('Interest Rate', color='orange')
 
-# Print Interest Rate Data in terminal
-print("Here's the interest rates!")
-print(read_interest_data)
+# Set common x-axis label
+ax.set_xlabel('Date')
 
-# Gather Federal Funds interest rates
-interest_rates = read_interest_data['Federal Funds']
-
-# Create a single figure with two subplots
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
-
-# Plot Stock Price Data in the first subplot
-ax1.plot(ticker_data.index, ticker_data['Close'], label='Stock Price')
-ax1.set_ylabel('Price')
-ax1.set_title(f"Stock Price for {ticker_symbol1}")
-ax1.legend()
-
-# Plot Interest Rates in the second subplot
-ax2.plot(read_interest_data['Date'], interest_rates, label='Interest Rates', color='orange')
-ax2.set_xlabel('Date')
-ax2.set_ylabel('Interest Rate')
-ax2.set_title('Federal Funds Interest Rates')
-ax2.legend()
+# Combine the legends from both axes
+ax.legend(loc='upper left')
+ax2.legend(loc='upper right')
 
 plt.xticks(rotation=45)
 plt.tight_layout()
