@@ -100,3 +100,10 @@ footer {
     margin: 20px auto;
     color: black;
 }
+
+.welcomeHeader {
+    border-radius: 10px;
+    height: 400px;
+    justify-content: center;
+    
+}
