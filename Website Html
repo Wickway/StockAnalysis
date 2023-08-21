@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Your website description here">
-    <title>Deepsight Analytics</title>
+    <title>Wickway Analytics</title>
     <!-- Add your CSS link(s) and other head content here -->
     <link rel="stylesheet" href="StockCSS.css">
 </head>
@@ -18,10 +18,12 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
             </ul>
-            <h1>Welcome to Deepsight!</h1>
+            <h1 class="welcomeHeader">Welcome to Wickway!</h1>
         </nav>
     </header>
-    
+    <div class="custom-div">
+        <p>This is a custom div added below the navigation bar.</p>
+    </div>
     <main>
         <section>
             <h2 class="aboutTitle">About Us</h2>
@@ -41,10 +43,8 @@
         </form>
 </div>
     <div class="placeholder">
-        
-        
-        
-    </div>
+
+</div>
     <footer>
         <p>&copy; 2023 Wickway Financial. All rights reserved.</p>
     </footer>
